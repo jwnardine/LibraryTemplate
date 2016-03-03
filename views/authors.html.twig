@@ -1,0 +1,37 @@
+<html>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/styles.css'>
+    <title>Library</title>
+</head>
+<body>
+    <div class='container'>
+        <h1>Authors</h1>
+
+        {% if authors is not empty %}
+            <p>Here are all your authors:</p>
+            <ul>
+                {% for author in authors %}
+                    <li><a href="/authors/{{ author.getId }}">{{ author.getFirstName }} {{ author.getLastName }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form action='/authors' method='post'>
+            <label for='first_name'>First name</label>
+            <input id='first_name' name='first_name' type='text'>
+
+            <label for='last_name'>Last name</label>
+            <input id='last_name' name='last_name' type='text'>
+
+
+            <button class="btn-info" type='submit'>Add author</button>
+        </form>
+        <form action='/delete_authors' method='post'>
+            <button class="btn-danger" type='submit'>Clear</button>
+        </form>
+
+        <p><a href='/'>Home</a></p>
+    </div>
+</body>
+</html>

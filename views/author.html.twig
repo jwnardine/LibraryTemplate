@@ -1,0 +1,44 @@
+<html>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/styles.css'>
+    <title>Library</title>
+</head>
+<body>
+    <div class='container'>
+        <h1>{{ author.getFirstName }} {{ author.getLastName }}</h1>
+
+        <h4>Add a book!</h4>
+
+
+        <form action='/add_books' method='post'>
+            <input id="author_id" name="author_id" type="hidden" value="{{ author.getId }}">
+            <label for="book_id">Select a book</label>
+            <select id='book_id' name='book_id' type='text'>
+              {% for book in all_books %}
+                <option value="{{ book.getId }}"> {{ book.getTitle }} </option>
+              {% endfor %}
+            </select>
+            <button class="info" type='submit'>Add book</button>
+        </form>
+
+        {% if books is not empty %}
+            <h3>Here are {{ author.getFirstName }} {{ author.getLastName }}'s books:</h3>
+            <ul>
+                {% for book in books %}
+                    <li>{{ book.getTitle }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form action="/delete_author/{{ author.getId }}" method='post'>
+        <input name="_method" type="hidden" value="delete">
+            <button class='btn-danger' type='submit'>Delete This Author!</button>
+        </form>
+
+        <p><a href="/authors/{{ author.getId }}/edit">Edit this author</a></p>
+
+        <p><a href='/'>Home</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/styles.css'>
+    <meta charset="utf-8">
+    <title>Author Edit</title>
+  </head>
+  <body>
+      <h1>Update {{ book.getTitle }}'s title:</h1>
+
+      <form action="/books_update/{{ book.getId }}" method="post">
+        <input name="_method" type="hidden" value ="patch">
+
+        <label for="title">Update book title</label>
+        <input id="title" name="title" type="text" value="{{ book.getTitle }}">
+
+        <button type="submit">Update</button>
+      </form>
+
+  </body>
+</html>
